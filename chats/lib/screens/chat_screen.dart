@@ -1,9 +1,14 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, empty_catches
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:get/get.dart';
+
+import '../controller/chat_controller.dart';
 
 class ChatScreen extends StatelessWidget {
-  const ChatScreen({super.key});
+  ChatController controller = Get.find();
+  ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,14 @@ class ChatScreen extends StatelessWidget {
           ),
           Text('MassegeMe')
         ]),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.close))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                controller.auth.signOut();
+                Get.back();
+              },
+              icon: Icon(Icons.close))
+        ],
       ),
       body: SafeArea(
         child: Column(
