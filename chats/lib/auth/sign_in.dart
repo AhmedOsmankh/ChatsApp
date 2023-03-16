@@ -1,6 +1,7 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, sized_box_for_whitespace
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, sized_box_for_whitespace, empty_catches
 
 import 'package:chats/auth/rigester.dart';
+import 'package:chats/screens/chat_screen.dart';
 import 'package:chats/widgets/my_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ import 'package:get/get.dart';
 import '../controller/sign_controller.dart';
 
 class SignIn extends StatelessWidget {
-  SignController controller = Get.find();
+ final SignController controller = Get.find<SignController>();
   final _auth = FirebaseAuth.instance;
   SignIn({super.key});
 
@@ -76,8 +77,17 @@ class SignIn extends StatelessWidget {
               child: MyButton(
                   color: Color.fromARGB(255, 2, 58, 87),
                   title: 'SignIn',
-                  onPressed: () async{
-                    final user =await _auth.signInWithEmailAndPassword(email: controller.signemail!, password: controller.signpassword!)
+                  onPressed: () async {
+                    try {
+                      final user = await _auth.signInWithEmailAndPassword(
+                          email: controller.signemail!,
+                          password: controller.signpassword!);
+                      if (user != null) {
+                        Get.to(() => ChatScreen());
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
                   }),
             ),
             // ignore: prefer_const_literals_to_create_immutables

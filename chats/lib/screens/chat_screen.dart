@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../controller/chat_controller.dart';
 
 class ChatScreen extends StatelessWidget {
-  ChatController controller = Get.find();
+  final ChatController controller = Get.find<ChatController>();
   ChatScreen({super.key});
 
   @override

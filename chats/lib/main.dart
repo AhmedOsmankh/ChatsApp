@@ -20,9 +20,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: MyBindings(),
+      //initialBinding: MyBindings(),
       debugShowCheckedModeBanner: false,
-      home: SignIn(),
+      home: Rigester(),
+      initialRoute: "/",
+      getPages: [
+        GetPage(name: "/", page: () => Rigester(), binding: MyBindings())
+      ],
     );
   }
 }

@@ -13,7 +13,7 @@ import '../controller/controller.dart';
 class Rigester extends StatelessWidget {
   Rigester({super.key});
   final _auth = FirebaseAuth.instance;
-  Controller controller = Get.find();
+  RigesterController controller = Get.put(RigesterController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(

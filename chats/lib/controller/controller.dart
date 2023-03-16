@@ -2,8 +2,7 @@ import 'package:get/get.dart';
 // ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 
-class Controller extends GetxController {
-  final auth = FirebaseAuth.instance;
+class RigesterController extends GetxController {
   String? email;
   String? password;
   @override
