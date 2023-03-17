@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, empty_catches
+// ignore_for_file: prefer_const_constructors, empty_catches, unused_import
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,7 +7,8 @@ import 'package:get/get.dart';
 import '../controller/chat_controller.dart';
 
 class ChatScreen extends StatelessWidget {
-  final ChatController controller = Get.find<ChatController>();
+  ChatController controller =
+      Get.put<ChatController>(ChatController(), permanent: true);
   ChatScreen({super.key});
 
   @override

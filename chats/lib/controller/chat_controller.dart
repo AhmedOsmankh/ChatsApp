@@ -1,5 +1,6 @@
+// ignore_for_file: avoid_print
+
 import 'package:get/get.dart';
-// ignore: unused_import
 import 'package:firebase_auth/firebase_auth.dart';
 
 class ChatController extends GetxController {
@@ -21,7 +22,7 @@ class ChatController extends GetxController {
   @override
   // ignore: unnecessary_overrides
   void onInit() {
-    getCurrentUser();
     super.onInit();
+    getCurrentUser();
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, unused_import, sized_box_for_whitespace, empty_catches, unused_local_variable
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, unused_import, sized_box_for_whitespace, empty_catches, unused_local_variable, must_be_immutable
 
 import 'package:chats/auth/sign_in.dart';
 import 'package:chats/screens/chat_screen.dart';

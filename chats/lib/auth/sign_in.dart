@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, sized_box_for_whitespace, empty_catches
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, duplicate_ignore, sized_box_for_whitespace, empty_catches, avoid_print, unnecessary_null_comparison
 
 import 'package:chats/auth/rigester.dart';
 import 'package:chats/screens/chat_screen.dart';
@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import '../controller/sign_controller.dart';
 
 class SignIn extends StatelessWidget {
- final SignController controller = Get.find<SignController>();
+ SignController controller= Get.put<SignController>(SignController(), permanent: true);
   final _auth = FirebaseAuth.instance;
   SignIn({super.key});
 
