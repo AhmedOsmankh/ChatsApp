@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import '../controller/chat_controller.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -49,7 +49,9 @@ class ChatScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextField(
-                        onChanged: (value) {},
+                        onChanged: (value) {
+                          controller.messageText = value;
+                        },
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 10.0, horizontal: 20.0),
@@ -58,7 +60,12 @@ class ChatScreen extends StatelessWidget {
                       ),
                     ),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.fireStore.collection('messege').add({
+                            'text': controller.messageText,
+                            'sinder': controller.signInUser.email
+                          });
+                        },
                         child: Text(
                           'send',
                           style: TextStyle(
