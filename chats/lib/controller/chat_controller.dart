@@ -9,6 +9,13 @@ class ChatController extends GetxController {
   final auth = FirebaseAuth.instance;
   final fireStore = FirebaseFirestore.instance;
   String? messageText; //this is will give us the messege
+  void getStreemMessage() async {
+    await for (var snapShot in fireStore.collection('messege').snapshots()) {
+      for (var messege in snapShot.docs) {
+        print(messege.data());
+      }
+    }
+  }
 
   void getCurrentUser() {
     try {
@@ -26,6 +33,7 @@ class ChatController extends GetxController {
   // ignore: unnecessary_overrides
   void onInit() {
     super.onInit();
+
     getCurrentUser();
   }
 }

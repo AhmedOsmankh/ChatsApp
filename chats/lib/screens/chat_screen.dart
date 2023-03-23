@@ -29,7 +29,8 @@ class ChatScreen extends StatelessWidget {
           IconButton(
               onPressed: () {
                 controller.auth.signOut();
-                Get.back();
+                controller.getStreemMessage();
+                // Get.back();
               },
               icon: Icon(Icons.close))
         ],
@@ -39,7 +40,29 @@ class ChatScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(),
+              StreamBuilder<QuerySnapshot>(
+                  stream:
+                      controller.fireStore.collection('messege').snapshots(),
+                  //snapshots is class from fire base its will we messages be in its
+                  builder: ((context, snapshot) {
+                    List<Text> messageWidgits = [];
+
+                    if (!snapshot.hasData) {
+                      Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    final masseges = snapshot.data!.docs;
+                    for (var messege in masseges) {
+                      final messegeText = messege.get('text');
+                      final messegeSender = messege.get('sender');
+                      final messageWidgit =
+                          Text('$messegeText - $messegeSender');
+                      messageWidgits.add(messageWidgit);
+                    }
+
+                    return Expanded(child: ListView(children: messageWidgits));
+                  })),
               Container(
                 decoration: BoxDecoration(
                     border: Border(
